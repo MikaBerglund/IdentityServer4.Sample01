@@ -18,6 +18,10 @@ namespace IdentityServer4.Sample01
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
 
+                .AddInMemoryApiResources(Config.ApiResources())
+                .AddInMemoryClients(Config.Clients())
+
+                .AddTestUsers(Config.TestUsers().ToList())
                 ;
         }
 
