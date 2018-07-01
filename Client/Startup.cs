@@ -47,6 +47,7 @@ namespace Client
                     options.ClientId = "mvc";
                     options.SaveTokens = true;
 
+                    options.Scope.Add("email");
                     options.Scope.Add("role-scope");
                     options.Scope.Add("manager-scope");
                 });
