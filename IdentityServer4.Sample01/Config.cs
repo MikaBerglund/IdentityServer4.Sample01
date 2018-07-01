@@ -14,13 +14,12 @@ namespace IdentityServer4.Sample01
 
         public static IEnumerable<ApiResource> ApiResources()
         {
-
             yield break;
         }
 
         public static IEnumerable<Client> Clients()
         {
-            return new List<Client>()
+            var list = new List<Client>()
             {
                 new Client()
                 {
@@ -40,7 +39,7 @@ namespace IdentityServer4.Sample01
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
                         JwtClaimTypes.Role,
-                        "myclaim"
+                        "manager"
                     },
 
                     RequireConsent = false,
@@ -48,17 +47,22 @@ namespace IdentityServer4.Sample01
                     AlwaysIncludeUserClaimsInIdToken = true
                 }
             };
+
+            return list;
         }
 
         public static IEnumerable<IdentityResource> IdentityResources()
         {
-            return new List<IdentityResource>()
+            var list = new List<IdentityResource>()
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResources.Email(),
-                new IdentityResource(JwtClaimTypes.Role, new string[]{ JwtClaimTypes.Role })
+                new IdentityResource(JwtClaimTypes.Role, new string[]{ JwtClaimTypes.Role }),
+                new IdentityResource("manager", new string[]{ "managerid", "managername", "manageremail"})
             };
+
+            return list;
         }
 
         public static IEnumerable<TestUser> TestUsers()
@@ -75,7 +79,12 @@ namespace IdentityServer4.Sample01
                         new Claim(JwtClaimTypes.Role, "role1"),
                         new Claim(JwtClaimTypes.Role, "role2"),
                         new Claim(JwtClaimTypes.Email, "user1@inter.net"),
-                        new Claim("myclaim", "my claim value")
+                        new Claim(JwtClaimTypes.Name, "user 1"),
+                        new Claim(JwtClaimTypes.WebSite, "http://inter.net"),
+
+                        new Claim("managerid", "007"),
+                        new Claim("managername", "Mr Bond"),
+                        new Claim("manageremail", "007@secretservice.co.uk")
                     }
                 }
             };
