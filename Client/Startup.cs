@@ -47,8 +47,8 @@ namespace Client
                     options.ClientId = "mvc";
                     options.SaveTokens = true;
 
-                    options.Scope.Add(JwtClaimTypes.Role);
-                    options.Scope.Add("manager");
+                    options.Scope.Add("role-scope");
+                    options.Scope.Add("manager-scope");
                 });
         }
 

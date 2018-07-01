@@ -38,8 +38,8 @@ namespace IdentityServer4.Sample01
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        JwtClaimTypes.Role,
-                        "manager"
+                        "role-scope",
+                        "manager-scope"
                     },
 
                     RequireConsent = false,
@@ -58,8 +58,9 @@ namespace IdentityServer4.Sample01
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResources.Email(),
-                new IdentityResource(JwtClaimTypes.Role, new string[]{ JwtClaimTypes.Role }),
-                new IdentityResource("manager", new string[]{ "managerid", "managername", "manageremail"})
+
+                new IdentityResource("role-scope", new string[]{ JwtClaimTypes.Role }),
+                new IdentityResource("manager-scope", new string[]{ "managerid", "managername", "manageremail"})
             };
 
             return list;
