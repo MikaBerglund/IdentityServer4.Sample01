@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="3.8.0-ardmore" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
