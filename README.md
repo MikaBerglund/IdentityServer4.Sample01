@@ -35,6 +35,10 @@ MVC Client
 The MVC client represents a web application that needs to authenticate its users, and request a few custom
 claims to be included in the token issued by Identity Server.
 
+> The client uses the implicit Open ID flow, which is the simplest to implement. If the different Open ID flows are
+still something you are trying to figure out, I suggest that you read [this short article](https://www.scottbrady91.com/OpenID-Connect/OpenID-Connect-Flows)
+by *Scott Brady*, that explains the differences between the different flows quite well.
+
 The client application requests the claims by requesting for scopes that the desired claim types are mapped to,
 as explained above. These scopes are requested in the Client application's *Startup.cs* file. The custom scopes that
 client requests are *role-scope* and *manager-scope*, which then produces the desired claim types and the
