@@ -22,7 +22,42 @@ namespace IdentityServer4.Sample01
         {
             return new List<Client>()
             {
+                new Client()
+                {
+                    ClientId = "mvc",
+                    ClientName = "MVC Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
 
+                    // where to redirect to after login
+                    RedirectUris = { "http://localhost:5002/signin-oidc" },
+
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
+
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        JwtClaimTypes.Role,
+                        "myclaim"
+                    },
+
+                    RequireConsent = false,
+
+                    AlwaysIncludeUserClaimsInIdToken = true
+                }
+            };
+        }
+
+        public static IEnumerable<IdentityResource> IdentityResources()
+        {
+            return new List<IdentityResource>()
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+                new IdentityResources.Email(),
+                new IdentityResource(JwtClaimTypes.Role, new string[]{ JwtClaimTypes.Role })
             };
         }
 
@@ -39,7 +74,8 @@ namespace IdentityServer4.Sample01
                     {
                         new Claim(JwtClaimTypes.Role, "role1"),
                         new Claim(JwtClaimTypes.Role, "role2"),
-                        new Claim(JwtClaimTypes.Email, "user1@inter.net")
+                        new Claim(JwtClaimTypes.Email, "user1@inter.net"),
+                        new Claim("myclaim", "my claim value")
                     }
                 }
             };
