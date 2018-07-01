@@ -6,7 +6,8 @@ This is a sample project on how to use [Identity Server 4](http://docs.identitys
 This sample follows the [Quick Start](http://docs.identityserver.io/en/release/quickstarts/0_overview.html) in the
 Identity Server docs, but simplifies the setup to include just the Identity Server implementation and an MVC
 client that requests only an identity token from Identity Server. The identity token is then processed by
-the MVC client and stored as the identity of the logged on user.
+the MVC client and stored as the identity of the logged on user, which you then can access as a normal
+claims principal in your ASP.NET Core web application.
 
 
 Custom Scopes
